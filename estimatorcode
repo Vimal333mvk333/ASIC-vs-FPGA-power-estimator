@@ -1,0 +1,19 @@
+def estimate_power(gate_type, num_gates, frequency, voltage):
+    # Typical gate capacitance values (in femtofarads)
+    gate_capacitance = {
+        'AND': 2.0,
+        'OR': 2.5,
+        'NAND': 1.8,
+        'NOR': 2.2,
+        'XOR': 3.0,
+        'XNOR': 3.2
+    }
+
+    # Power estimation: P = C * V^2 * f * N
+    C = gate_capacitance.get(gate_type.upper(), 2.0) * 1e-15
+    asic_power = C * (voltage ** 2) * frequency * num_gates
+
+    # FPGA is usually ~4x less power efficient
+    fpga_power = asic_power * 4.0
+
+    return round(asic_power * 1e6, 4), round(fpga_power * 1e6, 4)  # in µW
