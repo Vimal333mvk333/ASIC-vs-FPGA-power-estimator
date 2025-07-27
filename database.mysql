@@ -1,0 +1,14 @@
+CREATE DATABASE power_estimator_db;
+
+USE power_estimator_db;
+
+CREATE TABLE power_results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    gate_type VARCHAR(20),
+    num_gates INT,
+    frequency FLOAT,
+    voltage FLOAT,
+    asic_power FLOAT,
+    fpga_power FLOAT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
